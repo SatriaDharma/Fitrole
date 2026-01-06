@@ -142,7 +142,7 @@
                             'fat'     => ['color' => 'rose', 'label' => 'Lemak', 'desc' => 'Hormon & Otak']
                         ][strtolower($macro)] ?? ['color' => 'emerald', 'label' => $macro, 'desc' => 'Nutrisi'];
                     @endphp
-                    <div class="group p-4 rounded-3xl bg-{{ $config['color'] }}-50/30 border border-{{ $config['color'] }}-100/50 hover:bg-{{ $config['color'] }}-50 transition-colors">
+                    <div class="group p-4 rounded-3xl bg-{{ $config['color'] }}-50/30 border border-{{ $config['color'] }}-100/50">
                         <div class="flex items-center gap-4">
                             <div class="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center font-bold text-{{ $config['color'] }}-500 text-xs">
                                 {{ strtoupper(substr($macro, 0, 1)) }}
@@ -153,7 +153,7 @@
                                     <span class="text-sm font-black text-{{ $config['color'] }}-600">{{ $value }}<span class="text-[10px] ml-0.5">g</span></span>
                                 </div>
                                 <div class="h-1.5 w-full bg-white rounded-full overflow-hidden border border-{{ $config['color'] }}-100/30">
-                                    <div class="h-full bg-{{ $config['color'] }}-500 rounded-full" style="width: 100%"></div>
+                                    <div class="h-full rounded-full" style="width: 100%"></div>
                                 </div>
                                 <p class="text-[9px] font-bold text-{{ $config['color'] }}-400 mt-2 uppercase tracking-widest">{{ $config['desc'] }}</p>
                             </div>
@@ -171,7 +171,7 @@
 
         <div class="lg:col-span-2 bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
             <div class="flex items-center justify-between mb-8">
-                <h3 class="text-lg font-black text-slate-800 tracking-tight italic">Analisis Berat Badan</h3>
+                <h3 class="text-lg font-black text-slate-800 tracking-tight italic">Perkembangan Berat Badan</h3>
                 <div class="px-3 py-1 bg-slate-50 rounded-lg text-[10px] font-bold text-slate-400 uppercase">7 Hari Terakhir</div>
             </div>
             <div class="h-64">

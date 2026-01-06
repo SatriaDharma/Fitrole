@@ -121,10 +121,6 @@ class OnboardingController extends Controller
 
         $badgeService->checkAll(Auth::user());
 
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
-
         return redirect()
             ->route('dashboard')
             ->with('success', 'Profil lengkap & nutrisi berhasil dihitung 🎉');

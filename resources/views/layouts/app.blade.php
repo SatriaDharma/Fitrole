@@ -11,8 +11,11 @@
         @yield('meta')
     @else
         <meta property="og:title" content="Fitrole - Dashboard">
-        <meta property="og:image" content="{{ asset('images/default-fitrole-share.jpg') }}">
+        <meta property="og:image" content="{{ asset('images/default-fitrole-share.png') }}">
     @endif
+
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/logo-fitrole.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo-fitrole.png') }}">
 
     <title>Fitrole - Mulai Perjalanan Sehatmu</title>
 
@@ -58,50 +61,8 @@
                 @include('layouts.partials.navbar')
             </header>
 
-            <main class="flex-1 p-6 lg:p-10 relative">
-                <div class="relative z-10">
-
-                    @if(session('new_badges'))
-                    <div class="fixed top-24 lg:top-10 inset-x-0 z-[100] flex flex-col items-center gap-3 px-4 pointer-events-none">
-                        @foreach(session('new_badges') as $index => $badge)
-                        <div 
-                            x-data="{ show: true }" 
-                            x-show="show" 
-                            x-init="setTimeout(() => show = false, {{ 8000 + ($index * 1000) }})"
-                            x-transition:enter="transition ease-out duration-500"
-                            x-transition:enter-start="opacity-0 transform -translate-y-10 scale-95"
-                            x-transition:enter-end="opacity-100 transform translate-y-0 scale-100"
-                            x-transition:leave="transition ease-in duration-300"
-                            x-transition:leave-start="opacity-100 transform scale-100"
-                            x-transition:leave-end="opacity-0 transform scale-90"
-                            class="bg-slate-900 border-b-4 border-emerald-500 text-white px-5 py-4 rounded-[2rem] shadow-2xl flex items-center gap-4 pointer-events-auto max-w-sm lg:max-w-md w-full relative overflow-hidden"
-                        >
-                            <div class="absolute inset-0 bg-gradient-to-r from-emerald-500/10 via-transparent to-transparent animate-pulse"></div>
-                            
-                            <div class="relative flex-shrink-0">
-                                <div class="w-14 h-14 bg-white/10 backdrop-blur-md rounded-2xl rotate-6 flex items-center justify-center border border-white/20">
-                                    @if($badge['image'])
-                                        <img src="{{ asset('img/badges/' . $badge['image']) }}" class="w-10 h-10 object-contain -rotate-6">
-                                    @else
-                                        <span class="text-2xl -rotate-6">🏆</span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="relative flex-1">
-                                <h4 class="text-[9px] font-black uppercase tracking-[0.2em] text-emerald-400 mb-0.5">Achievement Unlocked!</h4>
-                                <p class="text-xs font-medium text-slate-400 leading-tight italic">{{ $badge['name'] }}</p>
-                                <p class="text-lg font-black text-white tracking-tight leading-none uppercase">Badge Didapatkan</p>
-                            </div>
-
-                            <button @click="show = false" class="relative text-slate-500 hover:text-white p-2">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
-                            </button>
-                        </div>
-                        @endforeach
-                    </div>
-                    @endif
-
+            <main class="flex-1 overflow-y-auto p-6 lg:p-10">
+                <div>
                     @yield('content')
                 </div>
             </main>

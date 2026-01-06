@@ -3,9 +3,8 @@
 @section('title', 'Fitrole - Meal Scanner AI')
 
 @section('content')
-<div class="max-w-7xl mx-auto lg:h-[calc(100vh-160px)] flex flex-col overflow-hidden px-4 lg:px-0" x-data="{ scanning: false, imageUrl: null }">
+<div class="max-w-7xl mx-auto flex flex-col px-4 lg:px-0 pb-10" x-data="{ scanning: false, imageUrl: null }">
     
-    {{-- Header Section --}}
     <div class="mb-6 px-1 flex-shrink-0">
         <div class="flex items-center gap-4 mb-2">
             <div class="p-3 bg-emerald-100 rounded-2xl shadow-sm">
@@ -24,7 +23,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch flex-1 min-h-0 pb-10 lg:pb-0">
         
         <div class="flex flex-col h-[400px] lg:h-full">
-            <section class="bg-white rounded-[2rem] lg:rounded-[2.5rem] p-3 lg:p-4 shadow-sm border border-slate-100 relative overflow-hidden group flex-1 flex flex-col">
+            <section class="bg-white rounded-[2rem] lg:rounded-[2.5rem] p-3 lg:p-4 shadow-sm border border-slate-100 relative overflow-y-auto group flex-1 flex flex-col">
                 <form action="{{ route('dashboard.meal.upload') }}" method="POST" enctype="multipart/form-data" id="mealForm" @submit="scanning = true" class="flex-1 flex flex-col">
                     @csrf
                     <label class="relative flex-1 block w-full rounded-[1.5rem] lg:rounded-[2rem] overflow-hidden cursor-pointer bg-slate-50 group-hover:bg-slate-100 transition-all border-2 border-dashed border-slate-200 group-hover:border-emerald-300">
@@ -74,12 +73,11 @@
             </section>
         </div>
 
-        <div class="flex flex-col h-auto lg:h-full">
+        <div class="flex flex-col h-full">
             @if(session('new_scan_id'))
                 @php $scan = auth()->user()->mealScans()->find(session('new_scan_id')); @endphp
                 <div class="bg-white rounded-[2rem] lg:rounded-[2.5rem] p-6 lg:p-8 shadow-xl border border-emerald-50 animate-fade-in-up flex-1 flex flex-col overflow-hidden">
                     
-                    {{-- Info Makanan --}}
                     <div class="flex items-center gap-4 mb-6 flex-shrink-0">
                         <div class="w-16 h-16 lg:w-20 lg:h-20 rounded-xl lg:rounded-2xl overflow-hidden shadow-inner border-2 border-slate-50 flex-shrink-0">
                             <img src="{{ asset('storage/' . $scan->image_path) }}" class="w-full h-full object-cover">

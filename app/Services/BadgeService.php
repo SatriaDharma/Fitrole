@@ -23,10 +23,12 @@ class BadgeService {
 
     private function checkDedicationBadges(User $user) {
         $streak = $user->getWeightStreak();
+
+        $hasProfile = $user->profile()->exists();
         
         $totalLogs = $user->progressDailies()->count();
 
-        if ($totalLogs >= 1) {
+        if ($hasProfile) {
             $this->giveBadge($user, '1ST_TIME');
         }
 
